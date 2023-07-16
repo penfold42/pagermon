@@ -178,6 +178,7 @@ router.route('/messages')
       var filterDupes = nconf.get('messages:duplicateFiltering');
       var dupeLimit = nconf.get('messages:duplicateLimit') || 0; // default 0
       var dupeTime = nconf.get('messages:duplicateTime') || 0; // default 0
+      var dupeOnlyMsg = nconf.get('messages:duplicateOnlyMsg') || 0; // default 0
       var pdwMode = nconf.get('messages:pdwMode');
       var adminShow = nconf.get('messages:adminShow');
       var data = req.body;
@@ -188,7 +189,13 @@ router.route('/messages')
         var datetime = data.datetime || 1;
         var timeDiff = datetime - dupeTime;
         // if duplicate filtering is enabled, we want to populate the message buffer and check for duplicates within the limits
-        var matches = _.where(msgBuffer, { message: data.message, address: data.address });
+        var matches;
+        if (dupeOnlyMsg) {
+          matches = _.where(msgBuffer, { message: data.message });
+        } else {
+          matches = _.where(msgBuffer, { message: data.message, address: data.address });
+	}
+
         if (matches.length > 0) {
           if (dupeTime != 0) {
             // search the matching messages and see if any match the time constrain
