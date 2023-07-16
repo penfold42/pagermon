@@ -38,6 +38,7 @@
     "adminShow": false,
     "HideCapcode": false,
     "HideSource": false,
+    "HideAlias": false,
     "apiSecurity": false
   },
   "auth": {
