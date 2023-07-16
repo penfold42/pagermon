@@ -18,6 +18,7 @@
     "maxLimit": 120,
     "defaultLimit": 20,
     "duplicateFiltering": true,
+    "duplicateOnlyMsg": false,
     "duplicateLimit": 10,
     "duplicateTime": 60,
     "rotationEnabled": true,
