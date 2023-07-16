@@ -147,7 +147,7 @@
             <td class="shrink noMobile" ng-if="!user">
               <span>{{message.alias || ''}}</span>
             </td>
-            <td class="expand">
+            <td class="expand clickable-td" uib-popover-template="'templates/popover.html'" popover-append-to-body=true ng-click="popoverEl = 'message'" popover-trigger="'outsideClick'">
               <div highlight="message.message" replacement="init.replaceText" class="pagerMessage"></div>
             </td>
         </tbody>

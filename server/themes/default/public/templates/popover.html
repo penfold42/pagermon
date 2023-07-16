@@ -1,4 +1,14 @@
+<script>
+function mkMsgQuery() {
+  const burl="/?q="+window.getSelection().toString();
+  document.querySelector('#replace').setAttribute('href', burl);
+}
+</script>
+
 <div class="popoverCont">
+    <div ng-if="popoverEl == 'message'">
+        <a id="replace" class="btn" onclick="mkMsgQuery()" href="/?q=">Filter</a>
+    </div>
     <div ng-if="popoverEl == 'source'">
         <a class="btn" href="/?address={{message.source}}">Filter</a>
     </div>
